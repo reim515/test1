@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>性格診断</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f4f4f9;
+      padding: 2rem;
+    }
+    .question {
+      margin-bottom: 2rem;
+      background-color: white;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .answers button {
+      margin: 0.5rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .answers button:hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>性格診断</h1>
+  <p>このページを開くには、ファイルをローカルに保存してブラウザで開くか、以下のようなHTMLホスティングサービス（例: GitHub Pages, Netlify, Vercel など）を使ってください。</p>
+  <div id="quiz"></div>
+  <div style="text-align: center; margin-top: 2rem;">
+    <button onclick="history.back()" style="padding: 0.5rem 1rem; font-size: 1rem; border-radius: 0.5rem; cursor: pointer;">戻る</button>
+  </div>
+
+  <script>
+    const questions = [
+      "新しいことに挑戦するのが好きだ。",
+      "人前で話すのは得意だと思う。",
+      "一人の時間を大切にしている。",
+      "計画を立てるのが好きだ。",
+      "思いつきで行動することが多い。",
+      "他人の気持ちをよく考える。",
+      "物事に対して完璧を求めがちだ。",
+      "変化より安定を好む。",
+      "ストレスを感じやすい方だ。",
+      "新しい友達を作るのが得意だ。",
+      "感情を表に出すタイプだ。",
+      "細かいことに気がつく方だ。",
+      "リーダーシップをとるのが好きだ。",
+      "周囲の評価を気にしがちだ。",
+      "自然や芸術に触れるのが好きだ。"
+    ];
+
+    const quizContainer = document.getElementById('quiz');
+
+    questions.forEach((q, i) => {
+      const questionDiv = document.createElement('div');
+      questionDiv.className = 'question';
+      questionDiv.innerHTML = `<p><strong>質問${i + 1}</strong>: ${q}</p>`;
+
+      const answerDiv = document.createElement('div');
+      answerDiv.className = 'answers';
+      ["あてはまる", "どちらでもない", "あてはまらない"].forEach(choice => {
+        const button = document.createElement('button');
+        button.textContent = choice;
+        button.onclick = () => alert(`質問${i + 1}: ${choice}`);
+        answerDiv.appendChild(button);
+      });
+
+      questionDiv.appendChild(answerDiv);
+      quizContainer.appendChild(questionDiv);
+    });
+  </script>
+</body>
+</html>
